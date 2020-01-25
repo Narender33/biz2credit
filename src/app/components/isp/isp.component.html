@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-7">
+      <div>
+        <div class="col-xs-3 text-center pt6">
+          <span class="glyphicon glyphicon-home pr10" aria-hidden="true"></span>
+          <span>Home</span>
+        </div>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </div>
+      <div *ngIf="!sortByPrice && !sortByRating">
+        <div *ngFor="let isp of isps"> 
+          <div class="list" (click)="changeISPDescription(isp)">
+            <div class="pull-left">
+              <span class="glyphicon glyphicon-tasks pr6" aria-hidden="true"></span>
+              <span>{{  isp.name }}</span>
+            </div>
+            <div class="pull-right">
+              <span class="pr3">₹</span>
+              <span>{{ isp.lowest_price }}</span>
+              <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="sortByPrice && !sortByRating">
+        <div *ngFor="let isp of sortByPriceArray"> 
+          <div class="list" (click)="changeISPDescription(isp)">
+            <div class="pull-left">
+              <span class="glyphicon glyphicon-tasks pr6" aria-hidden="true"></span>
+              <span>{{  isp.name }}</span>
+            </div>
+            <div class="pull-right">
+              <span class="pr3">₹</span>
+              <span>{{ isp.lowest_price }}</span>
+              <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!sortByPrice && sortByRating">
+        <div *ngFor="let isp of sortByRatingArray"> 
+          <div class="list" (click)="changeISPDescription(isp)">
+            <div class="pull-left">
+              <span class="glyphicon glyphicon-tasks pr6" aria-hidden="true"></span>
+              <span>{{  isp.name }}</span>
+            </div>
+            <div class="pull-right">
+              <span class="pr3">₹</span>
+              <span>{{ isp.lowest_price }}</span>
+              <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt3 text-center">
+        <button class="btn mr5">
+          <i class="glyphicon glyphicon-sort"></i>
+          Sort By
+        </button>
+        <div class="dinline btn-rdo">
+          <label class="radio-inline">
+            <input type="radio" name="optradio" (change)="sortBy('price')">
+            Price
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optradio" (change)="sortBy('rating')">
+            Rating
+          </label>
+        </div>
+      </div>
+    </div>
+    <app-isp-details [data]="ispDetail"></app-isp-details>
+  </div> 
